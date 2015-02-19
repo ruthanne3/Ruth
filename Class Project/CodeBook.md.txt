@@ -1,0 +1,49 @@
+This is the Code Book for the run_analysis.R program
+
+Requires: dplyr, tidyr packages
+
+VARIABLES:
+
+anames - data frame containing the number and name of each activity
+all.names - vector that contains the file paths for the 28 original text files extracted from 'UCI HAR Dataset.zip'
+avg.data - tidy data set containing the average of each measurement type for each activity and volunteer
+cnames - descriptive labels used to name each measurement type variable
+dat1 - temporary data set used to create the test.data and train.data set
+dat2 - temporary data set used to create the test.data and train.data set
+dat3 - temporary data set used to create the test.data and train.data set
+data - the data set containing the merged training and test data
+keep - logical vector that identifies measurement type that is a mean or standard deviation
+measurements - gives the column numbers of the measurement typ variable to keep in the final data set
+mnames - data frame containing the number and name of each measurement type
+td - temporary directory script
+test.data - data set that contains the volunteer, activity, and measurements for each test
+train.data - data set that contains the volunteer, activity, and measurements for each training test
+
+DATA:
+
+Input:
+
+File paths for the text files referenced in run_analysis.R
+./temp/UCI HAR Dataset/activity_labels.txt                    
+./temp/UCI HAR Dataset/features.txt  
+./temp/UCI HAR Dataset/test/subject_test.txt                
+./temp/UCI HAR Dataset/test/X_test.txt                 
+./temp/UCI HAR Dataset/test/y_test.txt 	
+./temp/UCI HAR Dataset/train/subject_train.txt                    
+./temp/UCI HAR Dataset/train/X_train.txt                   
+./temp/UCI HAR Dataset/train/y_train.txt 
+
+output:
+tidy_data_set.txt - output file of avg.data
+
+STEPS:
+1) read.table - command used to open the saved text files
+2) cbind, rbind - commands used to combine individual data sets into a merged data set
+3) select - command used to reduce the merged dataset to mean and standard deviation variables
+4) factor - command used to transform activities from numeric to descriptive
+5) gsub - command used to edit variable names and make them more readable
+6) grepl - command used to locate variable names containing "mean" and "std"
+7) gather - command used to create a tidy data set, reducing the number of columns
+8) group_by - command used to group the data set
+9) arrange - command used to sort the data set by volunteer, activity, and measurement type
+10) summarise - command used to calculate the average value of each measurement type by volunteer and activity
